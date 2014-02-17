@@ -1,0 +1,1 @@
+g++ $1".cpp" -o bin/$1 `pkg-config gtkmm-3.0 --cflags --libs`

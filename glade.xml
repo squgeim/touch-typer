@@ -25,7 +25,7 @@
             <property name="homogeneous">True</property>
             <property name="layout_style">center</property>
             <child>
-              <object class="GtkButton" id="button4">
+              <object class="GtkButton" id="file">
                 <property name="label" translatable="yes">Choose _File</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
@@ -39,7 +39,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkButton" id="button1">
+              <object class="GtkButton" id="ran">
                 <property name="label" translatable="yes">Practice _Random</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
@@ -53,7 +53,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkButton" id="button2">
+              <object class="GtkButton" id="scor">
                 <property name="label" translatable="yes">High _Score</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
@@ -67,7 +67,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkButton" id="button3">
+              <object class="GtkButton" id="abt">
                 <property name="label" translatable="yes">_About</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
@@ -95,7 +95,7 @@
             <property name="margin_left">10</property>
             <property name="margin_right">10</property>
             <child>
-              <object class="GtkLabel" id="label4">
+              <object class="GtkLabel" id="wel">
                 <property name="width_request">100</property>
                 <property name="height_request">80</property>
                 <property name="visible">True</property>
@@ -112,7 +112,7 @@ Touch Typer</property>
               </packing>
             </child>
             <child>
-              <object class="GtkLabel" id="label2">
+              <object class="GtkLabel" id="intro">
                 <property name="width_request">100</property>
                 <property name="height_request">80</property>
                 <property name="visible">True</property>
@@ -133,6 +133,75 @@ Touch Typer</property>
             <property name="expand">True</property>
             <property name="fill">True</property>
             <property name="position">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkFixed" id="choosefile">
+            <property name="can_focus">False</property>
+            <property name="margin_left">10</property>
+            <property name="margin_right">10</property>
+            <child>
+              <object class="GtkLabel" id="label1">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="margin_top">30</property>
+                <property name="margin_bottom">30</property>
+                <property name="label" translatable="yes">Choose a file to type from:</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkFileChooserButton" id="filechooserbutton">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="margin_top">25</property>
+                <property name="margin_bottom">30</property>
+                <property name="hexpand">True</property>
+                <property name="orientation">vertical</property>
+                <property name="create_folders">False</property>
+                <property name="width_chars">30</property>
+              </object>
+              <packing>
+                <property name="x">155</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
+            <property name="position">2</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkFixed" id="type">
+            <property name="can_focus">False</property>
+            <property name="margin_left">10</property>
+            <property name="margin_right">10</property>
+            <child>
+              <object class="GtkEntry" id="entry1">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="has_focus">True</property>
+                <property name="hexpand">True</property>
+                <property name="invisible_char">•</property>
+                <property name="activates_default">True</property>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">3</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkFixed" id="fixed1">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+          </object>
+          <packing>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
+            <property name="position">4</property>
           </packing>
         </child>
         <child>
@@ -183,7 +252,7 @@ Touch Typer</property>
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="position">2</property>
+            <property name="position">5</property>
           </packing>
         </child>
       </object>

@@ -1,13 +1,21 @@
 #include<gtkmm.h>
 #include<iostream>
+#include<string>
+
+Glib::RefPtr<Gtk::Application> app;
+Glib::RefPtr<Gtk::Builder> builder;
+
+#include "widgets.hpp"
+
+void on_abt_clicked();
+void on_file_clicked();
+
 
 int main(int argc, char* argv[]) {
-	Glib::RefPtr<Gtk::Application> app = Gtk::Application::create(argc, argv, "com.squgeim.typer");
-	Glib::RefPtr<Gtk::Builder> builder = Gtk::Builder::create();
-	Gtk::Window *mainwin=0;
-	
+	app = Gtk::Application::create(argc, argv, "com.squgeim.typer");
+
 	try {
-		builder->add_from_file("glade.xml");
+		builder = Gtk::Builder::create_from_file("glade.xml");
 	}
 	catch(const Glib::FileError& ex) {
 		std::cerr<<"FileError: "<<ex.what()<<std::endl;
@@ -19,9 +27,25 @@ int main(int argc, char* argv[]) {
 		std::cerr<<"BuilderError: "<<ex.what()<<std::endl;
 	}
 	
-	builder->get_widget("main",mainwin);
-	if(mainwin) {
-		return app->run(*mainwin);
+	try {
+		myWidget <Gtk::Window> mainwin("main");
+		MenuButton menu[4];
+		for(int i=0;i<4;i++) menu[i]=MenuButton(MenuButton::menubtns[i]);
+		
+		return app->run(*mainwin.rtr());
 	}
-	else return -1;
+	catch(int) {
+		std::cout<<"The main window was not found in the xml."<<std::endl;
+		return -1;
+	}
+}
+
+void on_abt_clicked() {
+	std::cout<<"Abt clicked"<<std::endl;
+}
+
+void on_file_clicked() {
+	myWidget <Gtk::Fixed> welcome("welcome"), file("choosefile");
+	welcome->hide();
+	file->show();
 }
