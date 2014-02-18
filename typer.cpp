@@ -19,14 +19,17 @@ int main(int argc, char* argv[]) {
 	}
 	catch(const Glib::FileError& ex) {
 		std::cerr<<"FileError: "<<ex.what()<<std::endl;
+		return -1;
 	}
 	catch(const Glib::MarkupError& ex) {
 		std::cerr<<"MarkupError: "<<ex.what()<<std::endl;
+		return -1;
 	}
 	catch(const Gtk::BuilderError& ex) {
 		std::cerr<<"BuilderError: "<<ex.what()<<std::endl;
+		return -1;
 	}
-	
+
 	try {
 		myWidget <Gtk::Window> mainwin("main");
 		MenuButton menu[4];
@@ -35,10 +38,10 @@ int main(int argc, char* argv[]) {
 		pages[4]=Page("welcome");
 		
 		app->run(*mainwin.rtr());
+		//app->run(*(mainwin->));
 	}
 	catch(int) {
 		std::cerr<<"The main window was not found in the xml."<<std::endl;
 		return -1;
 	}
-	return 0;
 }
