@@ -31,21 +31,14 @@ int main(int argc, char* argv[]) {
 		myWidget <Gtk::Window> mainwin("main");
 		MenuButton menu[4];
 		for(int i=0;i<4;i++) menu[i]=MenuButton(MenuButton::menubtns[i]);
+		for(int i=0;i<4;i++) pages[i]=Page(Page::pgs[i]);
+		pages[4]=Page("welcome");
 		
-		return app->run(*mainwin.rtr());
+		app->run(*mainwin.rtr());
 	}
 	catch(int) {
-		std::cout<<"The main window was not found in the xml."<<std::endl;
+		std::cerr<<"The main window was not found in the xml."<<std::endl;
 		return -1;
 	}
-}
-
-void on_abt_clicked() {
-	std::cout<<"Abt clicked"<<std::endl;
-}
-
-void on_file_clicked() {
-	myWidget <Gtk::Fixed> welcome("welcome"), file("choosefile");
-	welcome->hide();
-	file->show();
+	return 0;
 }

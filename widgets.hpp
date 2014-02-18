@@ -17,7 +17,7 @@ myWidget<T>::myWidget(const char* name) {
         if(!ptr) throw -1;
     }
     catch(int) {
-        std::cout<<"Could not open widget "<<name<<std::endl;
+        std::cerr<<"Could not open widget "<<name<<std::endl;
         throw;
     }
 }
@@ -34,6 +34,28 @@ T* myWidget<T>::rtr() {
 
 ////////////////////////////////////////////////////////////////////////
 
+class Page: public myWidget<Gtk::Fixed> {
+    int me;
+    public:
+    static std::string pgs[];
+    Page(const std::string);
+    Page(){};
+    void show();
+};
+std::string Page::pgs[] = {"choosefile","type","highscore","about"};
+Page::Page(const std::string name):myWidget(name.c_str()){
+    for(int i=0;i<4;i++) if(name==pgs[i]) {me=i;break;}
+}
+Page pages[5];
+int now=4;
+void Page::show() {
+    pages[now]->hide();
+    (*this)->show();
+    now=me;
+}
+
+////////////////////////////////////////////////////////////////////////
+
 class MenuButton: public myWidget<Gtk::Button> {
     int me;
     public:
@@ -45,10 +67,11 @@ class MenuButton: public myWidget<Gtk::Button> {
 std::string MenuButton::menubtns[] = {"file","ran","scor","abt"};
 
 MenuButton::MenuButton(const std::string name):myWidget<Gtk::Button>(name.c_str()) {
-    for(int i=0;i<4;i++) if(name==menubtns[i]) me=i;
-    rtr()->signal_clicked().connect(sigc::bind<int>( sigc::mem_fun(*this,&MenuButton::clicked),me ));
+    for(int i=0;i<4;i++) if(name==menubtns[i]) {me=i;break;}
+    //rtr()->signal_clicked().connect(sigc::bind<int>( sigc::mem_fun(*this,&MenuButton::clicked),me ));
+    rtr()->signal_clicked().connect(sigc::mem_fun(pages[me],&Page::show));
 }
 
 void MenuButton::clicked(int which) {
-    std::cout<<menubtns[which]<<" clicked"<<std::endl;
+    std::cerr<<menubtns[which]<<" clicked"<<std::endl;
 }
