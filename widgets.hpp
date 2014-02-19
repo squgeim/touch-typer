@@ -55,6 +55,8 @@ T* myWidget<T>::rtr() {
 }
 
 ////////////////////////////////////////////////////////////////////////
+#include "typer.hpp"
+////////////////////////////////////////////////////////////////////////
 
 class Page: public myWidget<Gtk::Fixed> {
     int me;
@@ -72,6 +74,10 @@ Page pages[5];
 int now=4;
 void Page::show() {
     pages[now]->hide();
+    if(me==2) {
+        typer t;
+        t.setrand();
+    }
     (*this)->show();
     now=me;
 }
