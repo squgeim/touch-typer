@@ -256,6 +256,51 @@ Touch Typer</property>
         <child>
           <object class="GtkFixed" id="about">
             <property name="can_focus">False</property>
+            <property name="margin_left">10</property>
+            <property name="margin_right">10</property>
+            <child>
+              <object class="GtkLabel" id="label5">
+                <property name="width_request">580</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Touch Typer</property>
+                <attributes>
+                  <attribute name="font-desc" value="&lt;Enter Value&gt; 20"/>
+                </attributes>
+              </object>
+              <packing>
+                <property name="y">50</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="label6">
+                <property name="width_request">580</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">is a tool to pactice touch typing.</property>
+              </object>
+              <packing>
+                <property name="y">80</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLinkButton" id="linkbutton1">
+                <property name="label" translatable="yes">Find the source code here, to update or tweak.</property>
+                <property name="height_request">40</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="receives_default">True</property>
+                <property name="has_tooltip">True</property>
+                <property name="hexpand">True</property>
+                <property name="vexpand">True</property>
+                <property name="relief">none</property>
+                <property name="uri">https://github.com/squGEIm/touch-typer</property>
+              </object>
+              <packing>
+                <property name="x">148</property>
+                <property name="y">150</property>
+              </packing>
+            </child>
           </object>
           <packing>
             <property name="expand">True</property>
