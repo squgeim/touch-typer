@@ -1,15 +1,11 @@
-#include<gtkmm.h>
-#include<iostream>
-#include<string>
+#include <gtkmm.h>
+#include <iostream>
+#include <string>
 
 Glib::RefPtr<Gtk::Application> app;
 Glib::RefPtr<Gtk::Builder> builder;
 
 #include "widgets.hpp"
-
-void on_abt_clicked();
-void on_file_clicked();
-
 
 int main(int argc, char* argv[]) {
 	app = Gtk::Application::create(argc, argv, "com.squgeim.typer");
