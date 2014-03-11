@@ -7,6 +7,17 @@ Glib::RefPtr<Gtk::Builder> builder;
 
 #include "widgets.hpp"
 
+void startfile() {
+	myWidget <Gtk::FileChooserButton> filebtn("filechooser");
+	/* std::string file = filebtn->get_file_location;
+	 * pages[2].show();
+	 */
+	std::string file = filebtn->get_filename();
+	std::cout<<file<<std::endl;
+	typer::setfile(file);
+	pages[1].show();
+}
+
 int main(int argc, char* argv[]) {
 	app = Gtk::Application::create(argc, argv, "com.squgeim.typer");
 
@@ -32,6 +43,9 @@ int main(int argc, char* argv[]) {
 		for(int i=0;i<4;i++) menu[i]=MenuButton(MenuButton::menubtns[i]);
 		for(int i=0;i<4;i++) pages[i]=Page(Page::pgs[i]);
 		pages[4]=Page("welcome");
+		
+		myWidget <Gtk::Button> filestart("filestart");
+		filestart->signal_clicked().connect(sigc::ptr_fun(startfile));
 		
 		app->run(*mainwin.rtr());
 		//app->run(*(mainwin->));

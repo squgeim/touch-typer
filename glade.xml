@@ -2,13 +2,13 @@
 <interface>
   <!-- interface-requires gtk+ 3.0 -->
   <object class="GtkWindow" id="main">
-    <property name="width_request">600</property>
+    <property name="width_request">700</property>
     <property name="height_request">250</property>
     <property name="can_focus">False</property>
     <property name="opacity">0.98999999999999999</property>
     <property name="title" translatable="yes">Touch Typer</property>
     <property name="resizable">False</property>
-    <property name="default_width">600</property>
+    <property name="default_width">700</property>
     <property name="default_height">250</property>
     <property name="destroy_with_parent">True</property>
     <property name="has_resize_grip">False</property>
@@ -19,7 +19,7 @@
         <property name="orientation">vertical</property>
         <child>
           <object class="GtkButtonBox" id="buttonbox2">
-            <property name="width_request">600</property>
+            <property name="width_request">700</property>
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="homogeneous">True</property>
@@ -150,7 +150,7 @@ Touch Typer</property>
               </object>
             </child>
             <child>
-              <object class="GtkFileChooserButton" id="filechooserbutton">
+              <object class="GtkFileChooserButton" id="filechooser">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="margin_top">55</property>
@@ -161,7 +161,20 @@ Touch Typer</property>
                 <property name="width_chars">30</property>
               </object>
               <packing>
-                <property name="x">155</property>
+                <property name="x">250</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="filestart">
+                <property name="label" translatable="yes">Start Typing</property>
+                <property name="height_request">30</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="receives_default">True</property>
+              </object>
+              <packing>
+                <property name="x">250</property>
+                <property name="y">81</property>
               </packing>
             </child>
           </object>
@@ -177,27 +190,13 @@ Touch Typer</property>
             <property name="margin_left">10</property>
             <property name="margin_right">10</property>
             <child>
-              <object class="GtkEntry" id="entry_text">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="has_focus">True</property>
-                <property name="hexpand">True</property>
-                <property name="invisible_char">•</property>
-                <property name="activates_default">True</property>
-                <property name="width_chars">80</property>
-              </object>
-              <packing>
-                <property name="y">100</property>
-              </packing>
-            </child>
-            <child>
               <object class="GtkLabel" id="main_text">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="label" translatable="yes">A quick brown fox jumpes over the lazy dog.</property>
                 <property name="width_chars">80</property>
                 <attributes>
-                  <attribute name="font-desc" value="&lt;Enter Value&gt; 16"/>
+                  <attribute name="font-desc" value="&lt;Enter Value&gt; 10"/>
                 </attributes>
               </object>
               <packing>
@@ -205,9 +204,23 @@ Touch Typer</property>
                 <property name="y">60</property>
               </packing>
             </child>
+            <child>
+              <object class="GtkEntry" id="entry_text">
+                <property name="width_request">680</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="has_focus">True</property>
+                <property name="hexpand">True</property>
+                <property name="invisible_char">•</property>
+                <property name="activates_default">True</property>
+              </object>
+              <packing>
+                <property name="y">85</property>
+              </packing>
+            </child>
           </object>
           <packing>
-            <property name="expand">False</property>
+            <property name="expand">True</property>
             <property name="fill">True</property>
             <property name="position">3</property>
           </packing>
@@ -285,19 +298,17 @@ Touch Typer</property>
             </child>
             <child>
               <object class="GtkLinkButton" id="linkbutton1">
-                <property name="label" translatable="yes">Find the source code here, to update or tweak.</property>
+                <property name="label" translatable="yes">Get the source code here, to update or tweak.</property>
                 <property name="height_request">40</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="receives_default">True</property>
                 <property name="has_tooltip">True</property>
-                <property name="hexpand">True</property>
-                <property name="vexpand">True</property>
-                <property name="relief">none</property>
+                <property name="relief">half</property>
                 <property name="uri">https://github.com/squGEIm/touch-typer</property>
               </object>
               <packing>
-                <property name="x">148</property>
+                <property name="x">155</property>
                 <property name="y">150</property>
               </packing>
             </child>
@@ -317,11 +328,13 @@ Touch Typer</property>
               <object class="GtkStatusbar" id="speed">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="halign">start</property>
                 <property name="orientation">vertical</property>
                 <property name="spacing">2</property>
+                <property name="homogeneous">True</property>
               </object>
               <packing>
-                <property name="expand">False</property>
+                <property name="expand">True</property>
                 <property name="fill">True</property>
                 <property name="position">0</property>
               </packing>
@@ -330,11 +343,13 @@ Touch Typer</property>
               <object class="GtkStatusbar" id="score">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="halign">center</property>
                 <property name="orientation">vertical</property>
                 <property name="spacing">2</property>
+                <property name="homogeneous">True</property>
               </object>
               <packing>
-                <property name="expand">False</property>
+                <property name="expand">True</property>
                 <property name="fill">True</property>
                 <property name="position">1</property>
               </packing>
@@ -343,11 +358,13 @@ Touch Typer</property>
               <object class="GtkStatusbar" id="count">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="halign">end</property>
                 <property name="orientation">vertical</property>
                 <property name="spacing">2</property>
+                <property name="homogeneous">True</property>
               </object>
               <packing>
-                <property name="expand">False</property>
+                <property name="expand">True</property>
                 <property name="fill">True</property>
                 <property name="position">2</property>
               </packing>

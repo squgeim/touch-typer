@@ -74,9 +74,8 @@ Page pages[5];
 int now=4;
 void Page::show() {
     pages[now]->hide();
-    if(me==2) {
+    if(me==1) {
         typer t;
-        t.setrand();
     }
     (*this)->show();
     now=me;
