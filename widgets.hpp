@@ -1,3 +1,6 @@
+#ifndef __WIDGETS_HPP__
+#define __WIDGETS_HPP__
+
 
 ////////////////////////////////////////////////////////////////////////
 
@@ -28,7 +31,7 @@ class myWidget {
     myWidget(const char*);
     myWidget(){};
     T* operator->();
-    T* rtr();  // Returs the original pointer. The -> operator is binary, so.
+    T* rtr();  // Returns the original pointer. The -> operator is binary, so.
 };
 
 template<class T>
@@ -97,3 +100,5 @@ MenuButton::MenuButton(const std::string name):myWidget<Gtk::Button>(name.c_str(
     //rtr()->signal_clicked().connect(sigc::bind<int>( sigc::mem_fun(*this,&MenuButton::clicked),me ));
     rtr()->signal_clicked().connect(sigc::mem_fun(pages[me],&Page::show));
 }
+
+#endif
