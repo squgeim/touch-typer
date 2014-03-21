@@ -1,3 +1,6 @@
+#ifndef __TYPER_HPP__
+#define __TYPER_HPP__
+
 #include <fstream>
 
 class typer {
@@ -9,7 +12,8 @@ class typer {
     // Vars
     int total;
     int now;
-    std::string line;
+    char line[100];
+    //std::string line;
     std::string was;
     std::string is;
 
@@ -22,9 +26,11 @@ class typer {
     Glib::RefPtr<Gtk::EntryBuffer> text;
 
     // The functions:
-    void keydown(Gtk::Entry*);
+    //void keydown(Gtk::Entry*,char*,int&);
     bool readline();
     void updatecount();
+    //void pressed(char);
+    void on_insert_text(const Glib::ustring&,int*);
 
     public:
     // The static ids of widgets in xml:
@@ -55,20 +61,24 @@ typer::typer() {
     score=myWidget<Gtk::Statusbar>(scr.c_str());
     count=myWidget<Gtk::Statusbar>(cnt.c_str());
 
+    now=0;
     //text=Gtk::EntryBuffer::create();
     //text->set_text("Key Pressed");
     //entry->set_buffer(text);
     //text->signal_inserted_text().connect(sigc::mem_fun(*this,&typer::keydown));
-    entry->signal_changed().connect( sigc::bind<Gtk::Entry*>(sigc::mem_fun(*this,&typer::keydown), entry.rtr()) );
+    //entry->signal_changed().connect( sigc::bind<typer&>(sigc::ptr_fun(pressed), *this));
 
     if(!isset) setrand();
     f.open(file.c_str());
     f.seekg(0,std::ios::end);
-    now=0;
     total=f.tellg();
     f.seekg(0);
     updatecount();
     readline();
+
+    //entry->signal_changed().connect(sigc::bind<Gtk::Entry*,char*,int>(sigc::mem_fun(*this,&typer::keydown), entry.rtr(), line, now) );
+    entry->signal_insert_text().connect(sigc::mem_fun(*this,&typer::on_insert_text));
+
 
     //entry->set_text("");
     //was=entry->get_text();
@@ -91,8 +101,11 @@ void typer::setfile(std::string s) {
 
 bool typer::readline() {
     if(!f.eof()) {
-        line="";
-        std::getline(f,line);
+    //    std::getline(f,line,80);
+        //char* tmp;
+        f.getline(line,80);
+        //line=tmp;
+        //std::getline(f,line);
         label->set_text(line);
     }
     else return false;
@@ -108,12 +121,31 @@ bool typer::setrand() {
     setfile("1.txt");
 }
 
-void typer::keydown(Gtk::Entry *entry) {
-    /* This function will be called each time the user presses a key. So
-     * all the checking and stuff will be managed here.
-     */
-    //std::cout<<"typed"<<entry->get_text()<<std::endl;
+/*
+void typer::keydown(Gtk::Entry *entry,char *line,int &now) {
+
 	std::string text=entry->get_text();
 	char n=text[text.length()-1];
-	std::cout<<n<<std::endl;
+    //std::cout<<*line<<std::endl;
+    //std::cout<<n<<std::endl;
+    std::cout<<line<<std::endl;
+    pressed(n);
+
 }
+
+void typer::pressed(char a) {
+    std::cout<<a<<std::endl;
+    char* ln;
+    f.getline(ln,80);
+    std::cout<<ln<<std::endl;
+}*/
+
+void typer::on_insert_text(const Glib::ustring &txt,int *i) {
+    std::cout<<txt<<std::endl;
+    std::cout<<*i<<std::endl;
+    std::cout<<line<<std::endl;
+//	entry->set_text("someting");
+}
+
+
+#endif
