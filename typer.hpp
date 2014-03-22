@@ -121,30 +121,12 @@ bool typer::setrand() {
     setfile("1.txt");
 }
 
-/*
-void typer::keydown(Gtk::Entry *entry,char *line,int &now) {
-
-	std::string text=entry->get_text();
-	char n=text[text.length()-1];
-    //std::cout<<*line<<std::endl;
-    //std::cout<<n<<std::endl;
-    std::cout<<line<<std::endl;
-    pressed(n);
-
-}
-
-void typer::pressed(char a) {
-    std::cout<<a<<std::endl;
-    char* ln;
-    f.getline(ln,80);
-    std::cout<<ln<<std::endl;
-}*/
-
 void typer::on_insert_text(const Glib::ustring &txt,int *i) {
     std::cout<<txt<<std::endl;
     std::cout<<*i<<std::endl;
     std::cout<<line<<std::endl;
-//	entry->set_text("someting");
+    myWidget <Gtk::Entry> entry(e.c_str());
+	entry->set_text("someting");
 }
 
 
